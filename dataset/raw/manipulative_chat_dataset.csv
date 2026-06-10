@@ -1,6 +1,11 @@
 text,label
-"If you really loved me, you'd do this for me.",Emotional Blackmail
-"You're imagining things, that never happened.",Gaslighting
-"After everything I've done for you, this is how you treat me?",Guilt Tripping
-"You're the most amazing person I've ever met, nobody compares to you.",Love Bombing
-"Good morning, how was your day?",Normal
+"How was your day?",Normal
+"Let's meet tomorrow.",Normal
+"You're imagining things again.",Gaslighting
+"That never happened.",Gaslighting
+"After everything I did for you.",Guilt Tripping
+"I sacrificed so much for you.",Guilt Tripping
+"If you leave me, I'll never forgive you.",Emotional Blackmail
+"Do this if you care about me.",Emotional Blackmail
+"You're absolutely perfect.",Love Bombing
+"Nobody understands me like you do.",Love Bombing
