@@ -1,101 +1,251 @@
 text,label
-Did you finish the assignment?,Normal
-You owe me this.,Emotional Blackmail
-I've never connected with someone this deeply.,Love Bombing
-Don't expect me to be there for you if you refuse.,Emotional Blackmail
-You'll be responsible if something happens to me.,Emotional Blackmail
-I guess my feelings don't matter.,Guilt Tripping
-You never appreciate what I do for you.,Guilt Tripping
-How was your day?,Normal
-That's all in your head.,Gaslighting
-You're remembering it wrong.,Gaslighting
-"That was just a joke, you're imagining offense.",Gaslighting
-You should feel bad for treating me like this.,Guilt Tripping
-I want to spend every second with you.,Love Bombing
-I deserve better after everything I've done.,Guilt Tripping
-See you tomorrow.,Normal
-You're imagining things again.,Gaslighting
-You're one of a kind.,Love Bombing
-I can't imagine life without you.,Love Bombing
-You're twisting the story.,Gaslighting
-I've done nothing but support you.,Guilt Tripping
-Don't make me suffer because of your choice.,Emotional Blackmail
-Thank you for your help.,Normal
-I can't believe you'd do this after all my efforts.,Guilt Tripping
-Do this or you'll regret it.,Emotional Blackmail
-You're the best thing that's ever happened to me.,Love Bombing
-You've got it completely wrong.,Gaslighting
-"If you loved me, you'd do this.",Emotional Blackmail
-What are your plans for the weekend?,Normal
-You're confused.,Gaslighting
-You're everything I've ever wanted.,Love Bombing
-I think you're forgetting what really happened.,Gaslighting
-You have to choose between me and them.,Emotional Blackmail
-Have a safe trip.,Normal
-You always let me down.,Guilt Tripping
-Let's discuss it later.,Normal
-You're overreacting as usual.,Gaslighting
-I can't stop thinking about you.,Love Bombing
-You're all I need in life.,Love Bombing
-Look how much I've suffered because of you.,Guilt Tripping
-You're acting crazy right now.,Gaslighting
-I'll never talk to you again if you don't.,Emotional Blackmail
-You owe me for all my help.,Guilt Tripping
-You're making things up.,Gaslighting
-I enjoyed the movie.,Normal
-I gave up so much because of you.,Guilt Tripping
-You clearly don't remember correctly.,Gaslighting
-Let's meet tomorrow.,Normal
-You make me feel unimportant.,Guilt Tripping
-You're absolutely perfect.,Love Bombing
-You can't trust your memory.,Gaslighting
-I've always been there for you.,Guilt Tripping
-I never said that.,Gaslighting
-You're creating problems that don't exist.,Gaslighting
-I always put you first.,Guilt Tripping
-You always misunderstand me.,Gaslighting
-You're perfect in every way.,Love Bombing
+You need to choose me over everyone else.,Emotional Blackmail
 Nobody else thinks that happened.,Gaslighting
-We're meant to be together forever.,Love Bombing
-I expected more from you.,Guilt Tripping
-I'll call you later.,Normal
-"I need this from you, no matter what.",Emotional Blackmail
-Hope you have a great day.,Normal
-"If you disappoint me, I'll remember it.",Emotional Blackmail
-"If you cared about me, you'd agree.",Emotional Blackmail
-Do it for me or don't bother calling.,Emotional Blackmail
-You're my soulmate.,Love Bombing
-"If you say no, I'll be devastated.",Emotional Blackmail
-Nobody compares to you.,Love Bombing
-Nobody understands me like you do.,Love Bombing
-I'm working on the project.,Normal
-I've never met anyone as incredible as you.,Love Bombing
-"If you leave me, I'll never forgive you.",Emotional Blackmail
-You'll feel guilty if you don't do it.,Emotional Blackmail
-"If you really cared, you wouldn't hesitate.",Emotional Blackmail
-Can we reschedule the meeting?,Normal
-"If you don't help, it's your fault.",Emotional Blackmail
-I've fallen for you so quickly because you're special.,Love Bombing
-Nobody sacrifices as much as I do.,Guilt Tripping
-The weather is nice today.,Normal
-"If you care at all, prove it.",Emotional Blackmail
-I've never felt this way about anyone.,Love Bombing
-Good morning!,Normal
-You've hurt me deeply after all I've done.,Guilt Tripping
-I thought you cared about me.,Guilt Tripping
-That never happened.,Gaslighting
+I don't know why I bother trying anymore.,Guilt Tripping
+You should feel bad for treating me like this.,Guilt Tripping
 "If you walk away, you'll lose me forever.",Emotional Blackmail
-I sacrificed so much for you.,Guilt Tripping
-You're being too sensitive.,Gaslighting
-I guess I don't matter to you anymore.,Guilt Tripping
-Can you send me the notes?,Normal
-How are things going?,Normal
-Our connection is magical.,Love Bombing
-Let's grab lunch later.,Normal
-What time is the class?,Normal
-"After everything I've done for you, this is how you repay me?",Guilt Tripping
-You're the most amazing person I've ever met.,Love Bombing
-You complete me.,Love Bombing
-Everyone agrees you're mistaken.,Gaslighting
-That's a good idea.,Normal
+You are my dream come true.,Love Bombing
+You are the most important person in my life.,Love Bombing
+You're the best person I've ever known.,Love Bombing
+You're confused.,Gaslighting
+You'll be responsible if something happens to me.,Emotional Blackmail
+How was your day?,Normal
+What are your plans for the weekend?,Normal
+The event starts at 5 PM.,Normal
+Have you watched that movie yet?,Normal
+You've hurt me deeply after all I've done.,Guilt Tripping
+Can you help me with this assignment?,Normal
+I need you in my life forever.,Love Bombing
+You've got it completely wrong.,Gaslighting
+I don't need anyone else when I have you.,Love Bombing
+You're making a big deal out of nothing.,Gaslighting
+Good luck with your interview.,Normal
+You clearly don't remember correctly.,Gaslighting
+"If you disappoint me, I'll remember it.",Emotional Blackmail
+I always put you first.,Guilt Tripping
+We're destined to be together.,Love Bombing
+You've convinced yourself of things that aren't true.,Gaslighting
+You make me feel unimportant.,Guilt Tripping
+That's all in your head.,Gaslighting
+I never implied that.,Gaslighting
+"If you care about me, you'll do this.",Emotional Blackmail
+Let's meet tomorrow.,Normal
+I don't know why you keep imagining these things.,Gaslighting
+"If you cared, this wouldn't even be a question.",Emotional Blackmail
+Hope you have a great day.,Normal
+Nobody else sees it that way.,Gaslighting
 You'll break my heart if you refuse.,Emotional Blackmail
+"That was just a joke, you're imagining offense.",Gaslighting
+Every moment with you feels magical.,Love Bombing
+I can't imagine a future without you.,Love Bombing
+You're the best thing that's ever happened to me.,Love Bombing
+You'll feel guilty if you don't do it.,Emotional Blackmail
+I've always put your happiness first.,Guilt Tripping
+"If you really cared, you wouldn't hesitate.",Emotional Blackmail
+I feel empty whenever you're not around.,Love Bombing
+What are you doing this weekend?,Normal
+You're acting crazy right now.,Gaslighting
+"If you walk away, I'll never forgive you.",Emotional Blackmail
+I guess my feelings don't matter.,Guilt Tripping
+You're the only person who truly gets me.,Love Bombing
+I think you're mixing things up again.,Gaslighting
+"If you disappoint me, I'll never forget it.",Emotional Blackmail
+I'll be there in ten minutes.,Normal
+I'll check and get back to you.,Normal
+"If you care at all, prove it.",Emotional Blackmail
+"If you leave, you'll destroy everything.",Emotional Blackmail
+I expected more from you.,Guilt Tripping
+I'm working on the project.,Normal
+We're meant to be together forever.,Love Bombing
+You're perfect in every way.,Love Bombing
+I enjoyed talking with you today.,Normal
+I'm heading home now.,Normal
+I can't stop thinking about you.,Love Bombing
+"If you don't help, it's your fault.",Emotional Blackmail
+I've always been the one making compromises.,Guilt Tripping
+"If you don't do this, I'll remember it forever.",Emotional Blackmail
+I can't imagine life without you.,Love Bombing
+The weather looks pleasant today.,Normal
+I'll never talk to you again if you don't.,Emotional Blackmail
+You are the answer to all my problems.,Love Bombing
+Let's discuss it tomorrow.,Normal
+I always put your needs before mine.,Guilt Tripping
+Nobody compares to you.,Love Bombing
+Don't make me suffer because of your choice.,Emotional Blackmail
+I thought you appreciated everything I do.,Guilt Tripping
+Hope your exam went well.,Normal
+I expected more gratitude from you.,Guilt Tripping
+You're inventing issues that aren't there.,Gaslighting
+You can't say no after everything that's happened.,Emotional Blackmail
+You make me feel like my efforts are wasted.,Guilt Tripping
+I've spent years supporting you.,Guilt Tripping
+You're overreacting as usual.,Gaslighting
+I can't believe you'd do this after all my efforts.,Guilt Tripping
+You're the center of my universe.,Love Bombing
+How is your project going?,Normal
+Meeting you changed my entire life.,Love Bombing
+Look how much I've suffered because of you.,Guilt Tripping
+You'll hurt me deeply if you refuse.,Emotional Blackmail
+I'll be heartbroken if you don't help me.,Emotional Blackmail
+Let's discuss it later.,Normal
+"If you say no, you're proving you don't care.",Emotional Blackmail
+You're reading too much into it.,Gaslighting
+You're twisting the story.,Gaslighting
+You're always getting the facts wrong.,Gaslighting
+You're just being dramatic.,Gaslighting
+You're making yourself upset for no reason.,Gaslighting
+Can we reschedule the meeting?,Normal
+You're confusing yourself again.,Gaslighting
+I've carried so much responsibility for us.,Guilt Tripping
+That's a good idea.,Normal
+"If you leave me, I'll never forgive you.",Emotional Blackmail
+I sacrificed so much for you.,Guilt Tripping
+I never expected this from someone I helped so much.,Guilt Tripping
+"If you don't help, I'll have nobody.",Emotional Blackmail
+I've never adored anyone this much.,Love Bombing
+I've spent so much time helping you.,Guilt Tripping
+No reasonable person would interpret it that way.,Gaslighting
+You owe me this.,Emotional Blackmail
+You're absolutely perfect.,Love Bombing
+I've sacrificed my happiness for you.,Guilt Tripping
+Don't let me down when I need you most.,Emotional Blackmail
+You're exaggerating everything.,Gaslighting
+The food was really good.,Normal
+Our connection is magical.,Love Bombing
+Let's work on it together.,Normal
+I'll be devastated if you don't agree.,Emotional Blackmail
+You're remembering it wrong.,Gaslighting
+You're being too sensitive.,Gaslighting
+I don't understand why you're treating me this way.,Guilt Tripping
+You're remembering the conversation incorrectly.,Gaslighting
+"If you loved me, you'd do this.",Emotional Blackmail
+"If you walk away now, we're done.",Emotional Blackmail
+You're the most amazing person I've ever met.,Love Bombing
+I'll see you next week.,Normal
+I've gone out of my way for you countless times.,Guilt Tripping
+You've forgotten everything I've done.,Guilt Tripping
+I feel like I've known you forever.,Love Bombing
+You are my entire happiness.,Love Bombing
+I've done everything I can for you.,Guilt Tripping
+You're acting irrationally.,Gaslighting
+I've done nothing but support you.,Guilt Tripping
+You're everything I've ever wanted.,Love Bombing
+"If you don't do this, I'll know how much I mean to you.",Emotional Blackmail
+I think you're forgetting what really happened.,Gaslighting
+Can you explain this concept?,Normal
+I don't know what I'd do without you.,Love Bombing
+Your memory has never been reliable.,Gaslighting
+You're all I need in life.,Love Bombing
+You're imagining things again.,Gaslighting
+You'll regret saying no.,Emotional Blackmail
+You've completely misunderstood the situation.,Gaslighting
+You'll feel terrible later if you don't.,Emotional Blackmail
+You make my world complete.,Love Bombing
+You owe this to me.,Emotional Blackmail
+Nobody sacrifices as much as I do.,Guilt Tripping
+You have no choice if you truly care.,Emotional Blackmail
+Don't make me suffer because of your decision.,Emotional Blackmail
+Thanks for letting me know.,Normal
+Have a safe trip.,Normal
+I've done so much for you and this is what I get?,Guilt Tripping
+Nobody could ever replace you.,Love Bombing
+You owe me for all my help.,Guilt Tripping
+You're turning nothing into something.,Gaslighting
+I've fallen for you so quickly because you're special.,Love Bombing
+You're letting your imagination run wild.,Gaslighting
+"If I mattered to you, you'd agree.",Emotional Blackmail
+I've never felt this way about anyone.,Love Bombing
+I think you're imagining problems.,Gaslighting
+How are things going?,Normal
+I've never been this certain about anyone.,Love Bombing
+I would never do this to you.,Guilt Tripping
+You're creating a false narrative.,Gaslighting
+I'll call you later.,Normal
+You always assume the worst.,Gaslighting
+You make me regret all the sacrifices I made.,Guilt Tripping
+You make life worth living.,Love Bombing
+You complete me.,Love Bombing
+I think you're overthinking everything.,Gaslighting
+I need you to do this no matter what.,Emotional Blackmail
+I trust you more than anyone else.,Love Bombing
+I never said that.,Gaslighting
+Don't expect me to be there for you if you refuse.,Emotional Blackmail
+I guess I don't matter to you anymore.,Guilt Tripping
+Prove that you care by doing this.,Emotional Blackmail
+The meeting has been rescheduled.,Normal
+You're all I've ever wanted.,Love Bombing
+Did you have breakfast?,Normal
+That's only happening in your mind.,Gaslighting
+I want to spend every second with you.,Love Bombing
+I've always stood by your side.,Guilt Tripping
+That's not what I meant and you know it.,Gaslighting
+Let's grab lunch later.,Normal
+You're making things up.,Gaslighting
+I've never met someone as special as you.,Love Bombing
+Do it for me or don't bother calling.,Emotional Blackmail
+You've hurt someone who only wanted the best for you.,Guilt Tripping
+I've given you everything I could.,Guilt Tripping
+Let's meet after class.,Normal
+Please share the presentation slides.,Normal
+I don't deserve to be treated this way after all I've done.,Guilt Tripping
+You always misunderstand me.,Gaslighting
+You can't trust your memory.,Gaslighting
+I thought you cared about me.,Guilt Tripping
+I enjoyed the movie.,Normal
+You'll be responsible for what happens next.,Emotional Blackmail
+You're creating problems that don't exist.,Gaslighting
+You're one of a kind.,Love Bombing
+I guess my efforts mean nothing to you.,Guilt Tripping
+Did you complete the report?,Normal
+"If you don't help, you're abandoning me.",Emotional Blackmail
+Good morning!,Normal
+Let me know when you're free.,Normal
+I deserve better after everything I've done.,Guilt Tripping
+I've always been there for you.,Guilt Tripping
+You have to choose between me and them.,Emotional Blackmail
+"After everything I've done for you, this is how you repay me?",Guilt Tripping
+Congratulations on your achievement!,Normal
+Nobody has ever made me this happy.,Love Bombing
+Thank you for your help.,Normal
+I would do absolutely anything for you.,Love Bombing
+I appreciate your help.,Normal
+Can you send me the notes?,Normal
+I'll send you the document shortly.,Normal
+I've never met anyone as incredible as you.,Love Bombing
+You always let me down.,Guilt Tripping
+You're not seeing things clearly.,Gaslighting
+I've always made time for you.,Guilt Tripping
+That's not what happened at all.,Gaslighting
+I gave up so much because of you.,Guilt Tripping
+Did you finish the assignment?,Normal
+I've never connected with someone this deeply.,Love Bombing
+I'm learning something new today.,Normal
+I've never felt a connection this strong.,Love Bombing
+I feel incomplete without you.,Love Bombing
+"If you loved me, you wouldn't hesitate.",Emotional Blackmail
+You seem confused about what really happened.,Gaslighting
+You're my soulmate.,Love Bombing
+Can you call me later?,Normal
+That never happened.,Gaslighting
+You never appreciate what I do for you.,Guilt Tripping
+I'll never be the same if you refuse.,Emotional Blackmail
+I'll never get over it if you refuse.,Emotional Blackmail
+Nobody understands me like you do.,Love Bombing
+"If you cared about me, you'd agree.",Emotional Blackmail
+You've made all my efforts feel meaningless.,Guilt Tripping
+"I need this from you, no matter what.",Emotional Blackmail
+I guess I care more than you do.,Guilt Tripping
+What time is the class?,Normal
+I've never asked much from you.,Guilt Tripping
+The weather is nice today.,Normal
+See you tomorrow.,Normal
+"If you refuse, don't expect me to understand.",Emotional Blackmail
+Take care and have a nice day.,Normal
+You always remember things incorrectly.,Gaslighting
+I think we're perfect together.,Love Bombing
+"After all my support, I expected better.",Guilt Tripping
+"If you say no, I'll be devastated.",Emotional Blackmail
+Everyone agrees you're mistaken.,Gaslighting
+I thought our relationship meant more than this.,Guilt Tripping
+Everything reminds me of you.,Love Bombing
+Do this or you'll regret it.,Emotional Blackmail

@@ -30,4 +30,10 @@ while True:
 
     prediction = model.predict(text_vector)[0]
 
+    probabilities = model.predict_proba(text_vector)[0]
+
+    confidence = max(probabilities) * 100
+
     print("\nPrediction:", label_mapping[prediction])
+
+    print(f"Confidence: {confidence:.2f}%")
