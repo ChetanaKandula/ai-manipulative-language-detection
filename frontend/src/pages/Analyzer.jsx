@@ -29,7 +29,30 @@ function Analyzer() {
   const [chat, setChat] = useState("")
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
+  const loadDemoConversation = () => {
+  setChat(`How was your day?
+You're imagining things again.
+Nobody else thinks that happened.
+If you loved me, you'd support me.
+You're the most amazing person I've ever met.
+Let's go out tomorrow.`)
+}
+  const copyResults = () => {
+    if (!result) return
+    const text = result.results
+    .map(
+      (item, index) =>
+        `Message ${index + 1}
+  Message: ${item.message}
+  Prediction: ${item.prediction}
+  Confidence: ${item.confidence}%`
+    )
+    .join("\n\n--------------------\n\n")
 
+  navigator.clipboard.writeText(text)
+
+  alert("Results copied!")
+}
   const formatLabel = (label) => label.replace(/_/g, " ")
 
   const totalMessages = result?.results?.length ?? 0
@@ -108,6 +131,30 @@ function Analyzer() {
       ? `Several messages indicate ${formatLabel(topLabel[0]).toLowerCase()} patterns and warrant closer review.`
       : "Upload a conversation to generate an AI insight summary."
 
+  const getRecommendation = () => {
+
+  if (!topLabel) {
+    return "Upload a conversation to receive AI-powered recommendations."
+  }
+
+  switch (topLabel[0]) {
+
+    case "Gaslighting":
+      return "This conversation contains signs of gaslighting. Consider verifying facts independently and documenting important discussions to avoid confusion."
+
+    case "Emotional Blackmail":
+      return "This conversation contains emotional pressure tactics. Be cautious of guilt-based requests and maintain healthy personal boundaries."
+
+    case "Love Bombing":
+      return "The conversation shows excessive idealization. Evaluate whether actions consistently match words over time before making important decisions."
+
+    case "Guilt Tripping":
+      return "The conversation contains guilt-inducing language. Be aware of attempts to make you responsible for another person's emotions."
+
+    default:
+      return "No major manipulation patterns detected. The conversation appears generally healthy and neutral."
+  }
+}
   const labelPalette = {
     Normal: "from-sky-500/20 to-cyan-500/10 text-sky-200 border-sky-400/20",
     "Gaslighting": "from-fuchsia-500/20 to-violet-500/10 text-fuchsia-200 border-fuchsia-400/20",
@@ -323,6 +370,23 @@ function Analyzer() {
               className="mt-6 h-72 w-full rounded-[1.75rem] border border-white/10 bg-white/5 p-5 text-[15px] leading-7 text-white outline-none transition placeholder:text-slate-500 focus:border-purple-400/50 focus:bg-white/[0.07]"
               placeholder={`Example:\nI'm worried you misunderstood me.\nYou always do this to me.\nI just care about you so much.`}
             />
+            <div className="mt-4 flex gap-3">
+              <button
+                onClick={loadDemoConversation}
+                className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm hover:bg-white/10 transition"
+              >
+                🎭 Demo Conversation
+              </button>
+              <button
+                onClick={() => {
+                  setChat("")
+                  setResult(null)
+                }}
+                className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm hover:bg-white/10 transition"
+              >
+                🧹Clear
+              </button>
+            </div>
 
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <motion.button
@@ -492,6 +556,17 @@ function Analyzer() {
                     <p className="mt-2 text-3xl font-semibold text-white">{normalCount}</p>
                   </div>
                 </div>
+                <div className="mt-5 rounded-[1.5rem] border border-cyan-400/20 bg-cyan-500/5 p-5">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">🤖</span>
+                </div>
+                <h3 className="font-semibold text-cyan-200">
+                  AI Recommendation
+                </h3>
+                <p className="mt-2 text-sm leading-7 text-slate-300">
+                  {getRecommendation()}
+                  </p>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -648,10 +723,19 @@ function Analyzer() {
                   <p className="text-sm uppercase tracking-[0.28em] text-purple-200/80">Message analysis cards</p>
                   <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white">Per-message review</h2>
                 </div>
+              <div className="flex items-center gap-3">
+                <button
+                onClick={copyResults}
+                className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10"
+                >
+                  📋 Copy Results
+                </button>
+
                 <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-300">
-                  {totalMessages} items
+                {totalMessages} items
                 </div>
               </div>
+            </div>
 
               <div className="grid gap-4">
                 {result.results.map((item, index) => {
