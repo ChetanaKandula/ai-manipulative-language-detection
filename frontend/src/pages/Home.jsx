@@ -46,6 +46,21 @@ const features = [
         <path d="M12 8.2v7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       </svg>
     )
+  },
+  {
+    title: "Risk Scoring",
+    copy: "Generate a conversation risk score based on detected manipulation patterns.",
+    icon: <span className="text-xl">📊</span>
+  },
+  {
+    title: "AI Recommendations",
+    copy: "Receive actionable guidance tailored to detected conversation behaviors.",
+    icon: <span className="text-xl">🤖</span>
+  },
+  {
+    title: "Analytics Dashboard",
+    copy: "Explore visual charts, summaries and message-level insights.",
+    icon: <span className="text-xl">📈</span>
   }
 ]
 
@@ -238,14 +253,100 @@ function Home() {
           </motion.button>
 
           <motion.button
-            className="rounded-2xl border border-white/10 bg-white/[0.03] px-8 py-4 font-semibold text-white/90 backdrop-blur-xl transition hover:border-white/20 hover:bg-white/[0.07]"
-            whileHover={{ y: -3, scale: 1.01 }}
-            whileTap={{ scale: 0.98 }}
+          onClick={() =>
+            document
+              .getElementById("features-section")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
+          className="rounded-2xl border border-white/10 bg-white/[0.03] px-8 py-4 font-semibold text-white/90 backdrop-blur-xl transition hover:border-white/20 hover:bg-white/[0.07]"
+          whileHover={{ y: -3, scale: 1.01 }}
+          whileTap={{ scale: 0.98 }}
           >
             Learn More
           </motion.button>
         </motion.div>
       </motion.section>
+      <section
+        id="features-section"
+        className="relative z-10 mx-auto max-w-7xl px-8 py-28"
+      >
+        <div className="text-center">
+          <p className="text-purple-400 font-semibold uppercase tracking-[0.3em]">
+            Features
+          </p>
+          <h2 className="mt-4 text-5xl font-bold text-white">
+            AI-powered Conversation Intelligence
+          </h2>
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-400">
+            Understand conversations through manipulation detection,
+            risk scoring, visual analytics and AI recommendations.
+          </p>
+        </div>
+      </section>
+      <section className="relative z-10 mx-auto max-w-6xl px-8 py-24">
+        <motion.div
+          className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-10 backdrop-blur-2xl"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <p className="text-purple-400 font-semibold uppercase tracking-[0.3em]">
+            Why We Built Manipulens AI ? 
+          </p>
+          <h2 className="mt-4 text-5xl font-bold text-white">
+            Understanding conversations shouldn't require guessing.
+          </h2>
+          <p className="mt-8 text-lg leading-9 text-slate-300">
+            Manipulation often hides behind everyday language.
+            Gaslighting, emotional pressure, guilt-based persuasion,
+            and excessive idealization can be difficult to recognize
+            in real time.
+          </p>
+          <p className="mt-6 text-lg leading-9 text-slate-300">
+            Manipulens AI helps people identify these signals using
+            machine learning, visual analytics and actionable insights.
+          </p>
+          <p className="mt-6 text-lg leading-9 text-slate-300">
+            Our mission is to make conversations more transparent,
+            understandable and healthier for everyone.
+          </p>
+        </motion.div>
+      </section>
+
+      <section className="relative z-10 mx-auto max-w-6xl px-8 py-24">
+
+  <motion.div
+    className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-12 text-center backdrop-blur-2xl"
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+  >
+
+    <p className="text-purple-400 font-semibold uppercase tracking-[0.3em]">
+      Ready To Start?
+    </p>
+
+    <h2 className="mt-4 text-5xl font-bold text-white">
+      Analyze Conversations With AI
+    </h2>
+
+    <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300">
+      Detect manipulation patterns, understand conversational
+      risks and receive AI-powered recommendations instantly.
+    </p>
+
+    <motion.button
+      onClick={() => navigate("/analyze")}
+      className="mt-10 rounded-2xl bg-gradient-to-r from-purple-500 via-fuchsia-500 to-cyan-500 px-8 py-4 font-semibold text-white shadow-[0_0_40px_rgba(168,85,247,0.35)]"
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      Start Analysis →
+    </motion.button>
+
+  </motion.div>
+
+</section>
 
       <section className="relative z-10 mx-auto max-w-6xl px-8 pb-20">
         <div className="grid gap-6 md:grid-cols-3">
@@ -274,6 +375,12 @@ function Home() {
           ))}
         </div>
       </section>
+
+       <footer className="relative z-10 border-t border-white/10 py-8 text-center">
+        <p className="text-sm text-slate-500">
+          © 2026 Manipulens AI • AI-powered conversation intelligence.
+        </p>
+      </footer>
     </div>
   )
 }
