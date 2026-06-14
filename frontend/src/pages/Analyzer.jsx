@@ -74,7 +74,64 @@ const detectionTypes = [
   "🟢 Normal Conversation"
 ]
 
-function Analyzer() {
+function Analyzer({ theme }) {
+  const isLight = theme === "light"
+  const shellClass = isLight
+    ? "relative min-h-screen overflow-hidden bg-[#eff3f8] text-slate-900"
+    : "relative min-h-screen overflow-hidden bg-[#050816] text-white"
+  const headerClass = isLight
+    ? "glass-panel flex flex-col gap-6 rounded-[2rem] p-6 shadow-[0_24px_80px_rgba(15,23,42,0.12)] lg:flex-row lg:items-end lg:justify-between"
+    : "glass-panel flex flex-col gap-6 rounded-[2rem] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.35)] lg:flex-row lg:items-end lg:justify-between"
+  const heroTitleClass = isLight
+    ? "mt-5 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl"
+    : "mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl"
+  const bodyCopyClass = isLight
+    ? "text-sm leading-7 text-slate-700 sm:text-base"
+    : "text-sm leading-7 text-slate-300 sm:text-base"
+  const panelClass = isLight
+    ? "glass-panel rounded-[2rem] p-6 sm:p-7 shadow-[0_20px_70px_rgba(15,23,42,0.08)]"
+    : "glass-panel rounded-[2rem] p-6 sm:p-7"
+  const cardClass = isLight
+    ? "rounded-[1.75rem] border border-slate-200/80 bg-white/75 p-5 shadow-[0_18px_60px_rgba(15,23,42,0.08)] backdrop-blur-xl transition hover:bg-white/90"
+    : "rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl transition hover:bg-white/[0.06]"
+  const softCardClass = isLight
+    ? "rounded-2xl border border-slate-200/80 bg-white/75 p-4 shadow-[0_14px_40px_rgba(15,23,42,0.06)]"
+    : "rounded-2xl border border-white/10 bg-white/5 p-4"
+  const inputClass = isLight
+    ? "mt-6 h-72 w-full rounded-[1.75rem] border border-slate-200 bg-white/85 p-5 text-[15px] leading-7 text-slate-900 outline-none transition placeholder:text-slate-500 focus:border-purple-400/50 focus:bg-white"
+    : "mt-6 h-72 w-full rounded-[1.75rem] border border-white/10 bg-white/5 p-5 text-[15px] leading-7 text-white outline-none transition placeholder:text-slate-500 focus:border-purple-400/50 focus:bg-white/[0.07]"
+  const smallButtonClass = isLight
+    ? "rounded-xl border border-slate-200 bg-white/80 px-4 py-2 text-sm text-slate-800 transition hover:bg-white hover:border-slate-300"
+    : "rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10"
+  const pillClass = isLight
+    ? "rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-700"
+    : "rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-300"
+  const sectionTitleClass = isLight
+    ? "mt-2 text-2xl font-semibold tracking-tight text-slate-950"
+    : "mt-2 text-2xl font-semibold tracking-tight text-white"
+  const mutedCopyClass = isLight ? "text-sm text-slate-600" : "text-sm text-slate-400"
+  const insightCardClass = isLight
+    ? "rounded-[1.35rem] border border-slate-200/80 bg-white/85 p-4"
+    : "rounded-[1.35rem] border border-white/10 bg-white/5 p-4"
+  const chartPanelClass = isLight
+    ? "relative overflow-hidden rounded-[1.75rem] border border-slate-200/80 bg-white/80 p-5 shadow-[0_18px_60px_rgba(15,23,42,0.08)] backdrop-blur-2xl sm:p-6"
+    : "relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#090b16]/75 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.26)] backdrop-blur-2xl sm:p-6"
+  const placeholderCardClass = isLight
+    ? "mx-auto mb-5 h-24 w-24 rounded-full border border-slate-200/80 bg-white/80 shadow-[0_0_30px_rgba(168,85,247,0.12)]"
+    : "mx-auto mb-5 h-24 w-24 rounded-full border border-white/10 bg-white/[0.04] shadow-[0_0_30px_rgba(168,85,247,0.18)]"
+  const footerClass = isLight
+    ? "relative z-20 mt-16 border-t border-slate-200/80 py-14 text-center"
+    : "relative z-20 mt-16 border-t border-white/10 py-14 text-center"
+  const footerTitleClass = isLight
+    ? "bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 bg-clip-text text-5xl font-bold text-transparent"
+    : "bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-5xl font-bold text-transparent"
+  const footerLeadClass = isLight
+    ? "mt-4 text-xl font-medium text-slate-800"
+    : "mt-4 text-xl font-medium text-white"
+  const footerBodyClass = isLight ? "mt-3 text-slate-600" : "mt-3 text-slate-400"
+  const footerTagClass = isLight
+    ? "rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm text-slate-700"
+    : "rounded-full border border-fuchsia-400/20 bg-fuchsia-500/10 px-4 py-2 text-sm text-fuchsia-200"
 
   const [chat, setChat] = useState("")
   const [result, setResult] = useState(null)
@@ -453,7 +510,7 @@ if (elapsed < 2000) {
 
   return (
     <motion.div
-      className="relative min-h-screen overflow-hidden bg-[#050816] text-white"
+      className={shellClass}
       initial="hidden"
       animate="show"
       variants={pageVariants}
@@ -507,18 +564,18 @@ if (elapsed < 2000) {
 
       <motion.div className="relative mx-auto flex min-h-screen max-w-7xl flex-col gap-8 px-4 py-6 sm:px-6 lg:px-8 lg:py-8" variants={pageVariants}>
 
-        <motion.header className="glass-panel flex flex-col gap-6 rounded-[2rem] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.35)] lg:flex-row lg:items-end lg:justify-between" variants={fadeUp}>
+        <motion.header className={headerClass} variants={fadeUp}>
 
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-purple-100/80">
+            <div className={pillClass}>
               AI Conversation Intelligence
             </div>
 
-            <h1 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className={heroTitleClass}>
               Premium manipulation analysis in a dark glass dashboard.
             </h1>
 
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+            <p className={`mt-4 max-w-2xl ${bodyCopyClass}`}>
               Paste a chat thread, run the model, and review the risk score, label distribution, and per-message findings in one view.
             </p>
           </div>
@@ -544,14 +601,14 @@ if (elapsed < 2000) {
         </motion.header>
 
         <section className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
-          <motion.div className="glass-panel rounded-[2rem] p-6 sm:p-7" variants={fadeUp}>
+          <motion.div className={panelClass} variants={fadeUp}>
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-semibold tracking-tight text-white">Chat input</h2>
-                <p className="mt-2 text-sm text-slate-400">Enter one message per line for best analysis fidelity.</p>
+                <h2 className={sectionTitleClass}>Chat input</h2>
+                <p className={`mt-2 ${mutedCopyClass}`}>Enter one message per line for best analysis fidelity.</p>
               </div>
 
-              <div className="rounded-full border border-purple-400/20 bg-purple-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-purple-100">
+              <div className={pillClass}>
                 Glassmorphism UI
               </div>
             </div>
@@ -559,10 +616,10 @@ if (elapsed < 2000) {
             <textarea
               value={chat}
               onChange={(e) => setChat(e.target.value)}
-              className="mt-6 h-72 w-full rounded-[1.75rem] border border-white/10 bg-white/5 p-5 text-[15px] leading-7 text-white outline-none transition placeholder:text-slate-500 focus:border-purple-400/50 focus:bg-white/[0.07]"
+              className={inputClass}
               placeholder={`Example:\nI'm worried you misunderstood me.\nYou always do this to me.\nI just care about you so much.`}
             />
-            <div className="mt-3 flex justify-between text-sm text-slate-400">
+            <div className={`mt-3 flex justify-between text-sm ${isLight ? "text-slate-600" : "text-slate-400"}`}>
               <span>{chat.length} characters</span>
 
               <span>
@@ -576,7 +633,7 @@ if (elapsed < 2000) {
             <div className="mt-4 flex gap-3">
               <button
                 onClick={loadDemoConversation}
-                className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm hover:bg-white/10 transition"
+                className={smallButtonClass}
               >
                 🎭 Demo Conversation
               </button>
@@ -585,7 +642,7 @@ if (elapsed < 2000) {
                   setChat("")
                   setResult(null)
                 }}
-                className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm hover:bg-white/10 transition"
+                className={smallButtonClass}
               >
                 🧹Clear
               </button>
@@ -595,7 +652,7 @@ if (elapsed < 2000) {
                 <button
                  key={label}
                  onClick={() => setChat(text)}
-                 className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-white hover:bg-white/10 transition"
+                 className={isLight ? "rounded-full border border-slate-200 bg-white/80 px-3 py-2 text-xs text-slate-800 transition hover:bg-white hover:border-slate-300" : "rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-white transition hover:bg-white/10"}
                 >
                   {label}
                   </button>
@@ -613,20 +670,20 @@ if (elapsed < 2000) {
                 {loading ? loadingMessage : "Run AI Analysis"}
               </motion.button>
 
-              <div className="flex flex-1 items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm text-slate-300">
+              <div className={isLight ? "flex flex-1 items-center justify-between rounded-2xl border border-slate-200/80 bg-white/80 px-4 py-4 text-sm text-slate-700" : "flex flex-1 items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm text-slate-300"}>
                 <span>Input format</span>
-                <span className="font-medium text-purple-100">One message per line</span>
+                <span className={isLight ? "font-medium text-purple-700" : "font-medium text-purple-100"}>One message per line</span>
               </div>
             </div>
-            <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-            <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-purple-200">
+            <div className={isLight ? "mt-6 rounded-[1.5rem] border border-slate-200/80 bg-white/80 p-5 shadow-[0_14px_40px_rgba(15,23,42,0.06)]" : "mt-6 rounded-[1.5rem] border border-white/10 bg-white/5 p-5"}>
+            <h3 className={isLight ? "text-sm font-semibold uppercase tracking-[0.2em] text-purple-700" : "text-sm font-semibold uppercase tracking-[0.2em] text-purple-200"}>
               Supported Detection Types
             </h3>
             <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {detectionTypes.map((type) => (
                 <div
                 key={type}
-                className="rounded-2xl border border-purple-400/15 bg-white/5 px-5 py-4 text-base font-medium text-slate-100 backdrop-blur-xl transition hover:bg-white/10 hover:scale-[1.02]"
+                className={isLight ? "rounded-2xl border border-slate-200/80 bg-white/90 px-5 py-4 text-base font-medium text-slate-800 backdrop-blur-xl transition hover:bg-white hover:scale-[1.02] shadow-[0_10px_30px_rgba(15,23,42,0.05)]" : "rounded-2xl border border-purple-400/15 bg-white/5 px-5 py-4 text-base font-medium text-slate-100 backdrop-blur-xl transition hover:bg-white/10 hover:scale-[1.02]"}
               >
                 ✓ {type}
               </div>
@@ -636,11 +693,11 @@ if (elapsed < 2000) {
           </motion.div>
 
           <div className="grid gap-6">
-            <motion.div className="glass-panel rounded-[2rem] p-6 sm:p-7" variants={fadeUp}>
+            <motion.div className={panelClass} variants={fadeUp}>
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-sm uppercase tracking-[0.28em] text-purple-200/80">Risk score</p>
-                  <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white">Conversation threat level</h2>
+                  <p className={isLight ? "text-sm uppercase tracking-[0.28em] text-purple-700/80" : "text-sm uppercase tracking-[0.28em] text-purple-200/80"}>Risk score</p>
+                  <h2 className={sectionTitleClass}>Conversation threat level</h2>
                 </div>
                 <div className={`rounded-full border px-4 py-2 text-sm font-semibold ${riskTier.ring} bg-gradient-to-br ${riskTier.tone}`}>
                   {riskTier.label}
@@ -715,10 +772,10 @@ if (elapsed < 2000) {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <div className="text-5xl font-semibold tracking-tight text-white drop-shadow-[0_0_18px_rgba(168,85,247,0.5)] sm:text-6xl">
+                      <div className={isLight ? "text-5xl font-semibold tracking-tight text-slate-950 drop-shadow-[0_0_18px_rgba(168,85,247,0.35)] sm:text-6xl" : "text-5xl font-semibold tracking-tight text-white drop-shadow-[0_0_18px_rgba(168,85,247,0.5)] sm:text-6xl"}>
                         <AnimatedNumber value={riskScore} />
                       </div>
-                      <div className="mt-1 text-[11px] uppercase tracking-[0.3em] text-slate-400">
+                      <div className={isLight ? "mt-1 text-[11px] uppercase tracking-[0.3em] text-slate-600" : "mt-1 text-[11px] uppercase tracking-[0.3em] text-slate-400"}>
                         Risk Score
                       </div>
                     </motion.div>
@@ -726,73 +783,73 @@ if (elapsed < 2000) {
                 </div>
 
                 <div className="flex h-full flex-col justify-center">
-                  <p className="text-sm leading-7 text-slate-300 sm:text-base">
+                  <p className={bodyCopyClass}>
                     {riskTier.hint}
                   </p>
 
-                  <div className="mt-5 grid grid-cols-2 gap-3 text-sm text-slate-300">
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                      <span className="block text-slate-500">Top pattern</span>
-                      <strong className="mt-1 block text-white">{topLabel ? formatLabel(topLabel[0]) : "No pattern yet"}</strong>
+                  <div className={`mt-5 grid grid-cols-2 gap-3 text-sm ${isLight ? "text-slate-700" : "text-slate-300"}`}>
+                    <div className={softCardClass}>
+                      <span className={isLight ? "block text-slate-600" : "block text-slate-500"}>Top pattern</span>
+                      <strong className={isLight ? "mt-1 block text-slate-950" : "mt-1 block text-white"}>{topLabel ? formatLabel(topLabel[0]) : "No pattern yet"}</strong>
                     </div>
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                      <span className="block text-slate-500">Average confidence</span>
-                      <strong className="mt-1 block text-white">{averageConfidence}%</strong>
+                    <div className={softCardClass}>
+                      <span className={isLight ? "block text-slate-600" : "block text-slate-500"}>Average confidence</span>
+                      <strong className={isLight ? "mt-1 block text-slate-950" : "mt-1 block text-white"}>{averageConfidence}%</strong>
                     </div>
                   </div>
                 </div>
               </div>
             </motion.div>
 
-            <motion.div className="glass-panel rounded-[2rem] p-6 sm:p-7" variants={fadeUp}>
+            <motion.div className={panelClass} variants={fadeUp}>
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-sm uppercase tracking-[0.28em] text-purple-200/80">AI Insight</p>
-                  <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white">Model summary</h2>
+                  <p className={isLight ? "text-sm uppercase tracking-[0.28em] text-purple-700/80" : "text-sm uppercase tracking-[0.28em] text-purple-200/80"}>AI Insight</p>
+                  <h2 className={sectionTitleClass}>Model summary</h2>
                 </div>
-                <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-300">
+                <div className={pillClass}>
                   Live from response data
                 </div>
               </div>
 
-              <div className="mt-6 rounded-[1.75rem] border border-purple-400/15 bg-[linear-gradient(180deg,rgba(168,85,247,0.12),rgba(255,255,255,0.04))] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.22)]">
+              <div className={isLight ? "mt-6 rounded-[1.75rem] border border-purple-400/15 bg-[linear-gradient(180deg,rgba(168,85,247,0.08),rgba(255,255,255,0.82))] p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)]" : "mt-6 rounded-[1.75rem] border border-purple-400/15 bg-[linear-gradient(180deg,rgba(168,85,247,0.12),rgba(255,255,255,0.04))] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.22)]"}>
                 <div className="grid gap-4 sm:grid-cols-3">
-                  <div className="rounded-[1.35rem] border border-white/10 bg-white/5 p-4">
-                    <span className="block text-[11px] uppercase tracking-[0.24em] text-slate-400">Most detected pattern:</span>
-                    <p className="mt-2 text-xl font-semibold text-white">{aiInsightPattern}</p>
+                  <div className={insightCardClass}>
+                    <span className={isLight ? "block text-[11px] uppercase tracking-[0.24em] text-slate-600" : "block text-[11px] uppercase tracking-[0.24em] text-slate-400"}>Most detected pattern:</span>
+                    <p className={isLight ? "mt-2 text-xl font-semibold text-slate-950" : "mt-2 text-xl font-semibold text-white"}>{aiInsightPattern}</p>
                   </div>
 
-                  <div className="rounded-[1.35rem] border border-white/10 bg-white/5 p-4">
-                    <span className="block text-[11px] uppercase tracking-[0.24em] text-slate-400">Risk Level:</span>
-                    <p className="mt-2 text-xl font-semibold text-white">{aiInsightRiskLevel}</p>
+                  <div className={insightCardClass}>
+                    <span className={isLight ? "block text-[11px] uppercase tracking-[0.24em] text-slate-600" : "block text-[11px] uppercase tracking-[0.24em] text-slate-400"}>Risk Level:</span>
+                    <p className={isLight ? "mt-2 text-xl font-semibold text-slate-950" : "mt-2 text-xl font-semibold text-white"}>{aiInsightRiskLevel}</p>
                   </div>
 
-                  <div className="rounded-[1.35rem] border border-white/10 bg-white/5 p-4">
-                    <span className="block text-[11px] uppercase tracking-[0.24em] text-slate-400">Summary:</span>
-                    <p className="mt-2 text-sm leading-7 text-slate-200">
+                  <div className={insightCardClass}>
+                    <span className={isLight ? "block text-[11px] uppercase tracking-[0.24em] text-slate-600" : "block text-[11px] uppercase tracking-[0.24em] text-slate-400"}>Summary:</span>
+                    <p className={isLight ? "mt-2 text-sm leading-7 text-slate-700" : "mt-2 text-sm leading-7 text-slate-200"}>
                       {aiInsightSummary}
                     </p>
                   </div>
                 </div>
 
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-[1.35rem] border border-white/10 bg-white/5 p-4">
-                    <span className="block text-[11px] uppercase tracking-[0.24em] text-slate-400">Manipulative messages</span>
-                    <p className="mt-2 text-3xl font-semibold text-white"><AnimatedNumber value={manipulativeCount} /></p>
+                  <div className={insightCardClass}>
+                    <span className={isLight ? "block text-[11px] uppercase tracking-[0.24em] text-slate-600" : "block text-[11px] uppercase tracking-[0.24em] text-slate-400"}>Manipulative messages</span>
+                    <p className={isLight ? "mt-2 text-3xl font-semibold text-slate-950" : "mt-2 text-3xl font-semibold text-white"}><AnimatedNumber value={manipulativeCount} /></p>
                   </div>
-                  <div className="rounded-[1.35rem] border border-white/10 bg-white/5 p-4">
-                    <span className="block text-[11px] uppercase tracking-[0.24em] text-slate-400">Neutral messages</span>
-                    <p className="mt-2 text-3xl font-semibold text-white"><AnimatedNumber value={normalCount} /></p>
+                  <div className={insightCardClass}>
+                    <span className={isLight ? "block text-[11px] uppercase tracking-[0.24em] text-slate-600" : "block text-[11px] uppercase tracking-[0.24em] text-slate-400"}>Neutral messages</span>
+                    <p className={isLight ? "mt-2 text-3xl font-semibold text-slate-950" : "mt-2 text-3xl font-semibold text-white"}><AnimatedNumber value={normalCount} /></p>
                   </div>
                 </div>
-                <div className="mt-5 rounded-[1.5rem] border border-cyan-400/20 bg-cyan-500/5 p-5">
+                <div className={isLight ? "mt-5 rounded-[1.5rem] border border-cyan-400/20 bg-cyan-500/8 p-5 shadow-[0_14px_40px_rgba(15,23,42,0.05)]" : "mt-5 rounded-[1.5rem] border border-cyan-400/20 bg-cyan-500/5 p-5"}>
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">🤖</span>
                 </div>
-                <h3 className="font-semibold text-cyan-200">
+                <h3 className={isLight ? "font-semibold text-cyan-800" : "font-semibold text-cyan-200"}>
                   AI Recommendation
                 </h3>
-                <p className="mt-2 text-sm leading-7 text-slate-300">
+                <p className={isLight ? "mt-2 text-sm leading-7 text-slate-700" : "mt-2 text-sm leading-7 text-slate-300"}>
                   {getRecommendation()}
                   </p>
                 </div>
@@ -802,20 +859,20 @@ if (elapsed < 2000) {
         </section>
 
         {result ? (
-          <motion.section className="glass-panel rounded-[2rem] p-6 sm:p-7" variants={fadeUp}>
+          <motion.section className={panelClass} variants={fadeUp}>
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <p className="text-sm uppercase tracking-[0.28em] text-purple-200/80">Summary chart</p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white">Conversation distribution</h2>
+                <p className={isLight ? "text-sm uppercase tracking-[0.28em] text-purple-700/80" : "text-sm uppercase tracking-[0.28em] text-purple-200/80"}>Summary chart</p>
+                <h2 className={sectionTitleClass}>Conversation distribution</h2>
               </div>
-              <p className="max-w-2xl text-sm leading-7 text-slate-400">
+              <p className={isLight ? "max-w-2xl text-sm leading-7 text-slate-600" : "max-w-2xl text-sm leading-7 text-slate-400"}>
                 A donut chart showing how the model distributed the conversation across the detected patterns.
               </p>
             </div>
 
             <div className="mt-6 grid gap-6 xl:grid-cols-[1.1fr_0.9fr] xl:items-center">
               <motion.div
-                className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#090b16]/75 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.26)] backdrop-blur-2xl sm:p-6"
+                className={chartPanelClass}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -827,13 +884,13 @@ if (elapsed < 2000) {
                   {isSummaryLoading ? (
                     <div className="flex h-full items-center justify-center">
                       <div className="flex flex-col items-center gap-5">
-                        <div className="relative h-36 w-36 rounded-full border border-white/10 bg-white/[0.04] shadow-[0_0_30px_rgba(168,85,247,0.22)]">
+                        <div className={isLight ? "relative h-36 w-36 rounded-full border border-slate-200/80 bg-white/80 shadow-[0_0_30px_rgba(168,85,247,0.12)]" : "relative h-36 w-36 rounded-full border border-white/10 bg-white/[0.04] shadow-[0_0_30px_rgba(168,85,247,0.22)]"}>
                           <div className="absolute inset-4 rounded-full border border-dashed border-purple-300/30 animate-spin [animation-duration:3.5s]" />
                           <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.16),transparent_60%)] animate-pulse" />
                         </div>
                         <div className="text-center">
-                          <p className="text-sm uppercase tracking-[0.28em] text-purple-200/70">Loading chart</p>
-                          <p className="mt-2 text-sm text-slate-400">Preparing summary distribution...</p>
+                          <p className={isLight ? "text-sm uppercase tracking-[0.28em] text-purple-700/70" : "text-sm uppercase tracking-[0.28em] text-purple-200/70"}>Loading chart</p>
+                          <p className={isLight ? "mt-2 text-sm text-slate-600" : "mt-2 text-sm text-slate-400"}>Preparing summary distribution...</p>
                         </div>
                       </div>
                     </div>
@@ -854,14 +911,14 @@ if (elapsed < 2000) {
                           cursor={false}
                           formatter={(value, name) => [value, formatLabel(name)]}
                           contentStyle={{
-                            background: "rgba(8, 10, 22, 0.92)",
-                            border: "1px solid rgba(255,255,255,0.12)",
+                            background: isLight ? "rgba(255,255,255,0.95)" : "rgba(8, 10, 22, 0.92)",
+                            border: isLight ? "1px solid rgba(148,163,184,0.25)" : "1px solid rgba(255,255,255,0.12)",
                             borderRadius: "16px",
-                            color: "#fff",
-                            boxShadow: "0 20px 60px rgba(0,0,0,0.35)"
+                            color: isLight ? "#0f172a" : "#fff",
+                            boxShadow: isLight ? "0 20px 60px rgba(15,23,42,0.12)" : "0 20px 60px rgba(0,0,0,0.35)"
                           }}
-                          labelStyle={{ color: "#cbd5e1" }}
-                          itemStyle={{ color: "#fff" }}
+                          labelStyle={{ color: isLight ? "#334155" : "#cbd5e1" }}
+                          itemStyle={{ color: isLight ? "#0f172a" : "#fff" }}
                         />
 
                         <Pie
@@ -902,10 +959,10 @@ if (elapsed < 2000) {
                   {summaryTotal > 0 && (
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                       <div className="text-center">
-                        <div className="text-4xl font-semibold text-white drop-shadow-[0_0_18px_rgba(168,85,247,0.45)] sm:text-5xl">
+                        <div className={isLight ? "text-4xl font-semibold text-slate-950 drop-shadow-[0_0_18px_rgba(168,85,247,0.25)] sm:text-5xl" : "text-4xl font-semibold text-white drop-shadow-[0_0_18px_rgba(168,85,247,0.45)] sm:text-5xl"}>
                           {summaryTotal}
                         </div>
-                        <div className="mt-2 text-[11px] uppercase tracking-[0.28em] text-slate-400">
+                        <div className={isLight ? "mt-2 text-[11px] uppercase tracking-[0.28em] text-slate-600" : "mt-2 text-[11px] uppercase tracking-[0.28em] text-slate-400"}>
                           total segments
                         </div>
                       </div>
@@ -924,7 +981,7 @@ if (elapsed < 2000) {
                 {summaryEntries.map(([label, count], index) => (
                   <motion.div
                     key={label}
-                    className={`rounded-[1.4rem] border bg-gradient-to-br p-4 shadow-[0_18px_50px_rgba(0,0,0,0.18)] backdrop-blur-xl ${labelPalette[label] ?? "from-white/10 to-white/[0.03] text-white border-white/10"}`}
+                    className={isLight ? `rounded-[1.4rem] border bg-gradient-to-br p-4 shadow-[0_18px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl ${labelPalette[label] ?? "from-white to-slate-50 text-slate-900 border-slate-200/80"}` : `rounded-[1.4rem] border bg-gradient-to-br p-4 shadow-[0_18px_50px_rgba(0,0,0,0.18)] backdrop-blur-xl ${labelPalette[label] ?? "from-white/10 to-white/[0.03] text-white border-white/10"}`}
                     initial={{ opacity: 0, x: 18 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.25 }}
@@ -933,11 +990,11 @@ if (elapsed < 2000) {
                   >
                     <div className="flex items-center justify-between gap-4">
                       <span className="text-xs uppercase tracking-[0.24em] opacity-70">{formatLabel(label)}</span>
-                      <span className="text-lg font-semibold text-white">{count}</span>
+                      <span className={isLight ? "text-lg font-semibold text-slate-950" : "text-lg font-semibold text-white"}>{count}</span>
                     </div>
-                    <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
+                    <div className={isLight ? "mt-3 h-1.5 overflow-hidden rounded-full bg-slate-200" : "mt-3 h-1.5 overflow-hidden rounded-full bg-white/10"}>
                       <div
-                        className="h-full rounded-full bg-white/90 transition-all duration-700"
+                        className={isLight ? "h-full rounded-full bg-slate-900 transition-all duration-700" : "h-full rounded-full bg-white/90 transition-all duration-700"}
                         style={{ width: `${summaryTotal ? (count / summaryTotal) * 100 : 0}%` }}
                       />
                     </div>
@@ -949,24 +1006,24 @@ if (elapsed < 2000) {
             <div className="mt-8 grid gap-4">
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-sm uppercase tracking-[0.28em] text-purple-200/80">Message analysis cards</p>
-                  <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white">Per-message review</h2>
+                  <p className={isLight ? "text-sm uppercase tracking-[0.28em] text-purple-700/80" : "text-sm uppercase tracking-[0.28em] text-purple-200/80"}>Message analysis cards</p>
+                  <h2 className={sectionTitleClass}>Per-message review</h2>
                 </div>
               <div className="flex items-center gap-3">
                 <button
                 onClick={copyResults}
-                className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10"
+                className={smallButtonClass}
                 >
                   📋 Copy Results
                 </button>
                 <button
                 onClick={downloadReport}
-                className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:bg-white/10"
+                className={smallButtonClass}
                 >
                   📄 Download Report
                 </button>
 
-                <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-300">
+                <div className={pillClass}>
                 {totalMessages} items
                 </div>
               </div>
@@ -981,7 +1038,7 @@ if (elapsed < 2000) {
                   return (
                     <motion.article
                       key={`${item.message}-${index}`}
-                      className={`group rounded-[1.75rem] border bg-white/[0.04] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl transition hover:bg-white/[0.06] ${theme.card}`}
+                      className={isLight ? `group rounded-[1.75rem] border bg-white/80 p-5 shadow-[0_18px_60px_rgba(15,23,42,0.08)] backdrop-blur-xl transition hover:bg-white ${theme.card}` : `group rounded-[1.75rem] border bg-white/[0.04] p-5 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl transition hover:bg-white/[0.06] ${theme.card}`}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.2 }}
@@ -998,18 +1055,18 @@ if (elapsed < 2000) {
                             <span className="text-xs uppercase tracking-[0.22em] text-slate-500">Message {index + 1}</span>
                           </div>
 
-                          <p className="mt-4 text-lg leading-8 text-white/90">
+                          <p className={isLight ? "mt-4 text-lg leading-8 text-slate-800" : "mt-4 text-lg leading-8 text-white/90"}>
                             {item.message}
                           </p>
                         </div>
 
                         <div className={`min-w-[12rem] rounded-[1.5rem] border p-4 ${theme.confidenceWrap}`}>
-                          <div className="flex items-center justify-between text-sm text-slate-400">
+                          <div className={isLight ? "flex items-center justify-between text-sm text-slate-600" : "flex items-center justify-between text-sm text-slate-400"}>
                             <span>Confidence</span>
-                            <strong className="text-white">{riskWidth}%</strong>
+                            <strong className={isLight ? "text-slate-950" : "text-white"}>{riskWidth}%</strong>
                           </div>
                           <div className="mt-3 space-y-2">
-                            <div className="h-3 overflow-hidden rounded-full bg-white/8 ring-1 ring-white/10">
+                            <div className={isLight ? "h-3 overflow-hidden rounded-full bg-slate-200 ring-1 ring-slate-300/80" : "h-3 overflow-hidden rounded-full bg-white/8 ring-1 ring-white/10"}>
                               <motion.div
                                 className={`h-full rounded-full bg-gradient-to-r ${theme.confidenceBar}`}
                                 initial={{ width: 0 }}
@@ -1019,11 +1076,11 @@ if (elapsed < 2000) {
                                 style={{ boxShadow: `0 0 18px ${theme.glow}` }}
                               />
                             </div>
-                            <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-slate-300">
+                            <div className={isLight ? "font-mono text-[11px] uppercase tracking-[0.28em] text-slate-600" : "font-mono text-[11px] uppercase tracking-[0.28em] text-slate-300"}>
                               {"██████████░░░░"} {riskWidth}%
                             </div>
                           </div>
-                          <p className="mt-4 text-xs uppercase tracking-[0.24em] text-slate-500">
+                          <p className={isLight ? "mt-4 text-xs uppercase tracking-[0.24em] text-slate-600" : "mt-4 text-xs uppercase tracking-[0.24em] text-slate-500"}>
                             {isManipulative ? "Manipulative pattern" : "Neutral pattern"}
                           </p>
                         </div>
@@ -1035,24 +1092,24 @@ if (elapsed < 2000) {
             </div>
           </motion.section>
         ) : (
-          <motion.section className="glass-panel rounded-[2rem] p-6 sm:p-7" variants={fadeUp}>
+          <motion.section className={panelClass} variants={fadeUp}>
             <div className="text-center">
-  <h2 className="text-3xl font-semibold text-white">
+  <h2 className={isLight ? "text-3xl font-semibold text-slate-950" : "text-3xl font-semibold text-white"}>
     How Manipulens Works
   </h2>
 
-  <p className="mt-3 text-slate-400">
+  <p className={isLight ? "mt-3 text-slate-600" : "mt-3 text-slate-400"}>
     Analyze conversations in four simple steps
   </p>
 
   <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
 
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+    <div className={softCardClass}>
       <div className="text-4xl">📝</div>
-      <h3 className="mt-3 font-semibold text-white">
+      <h3 className={isLight ? "mt-3 font-semibold text-slate-950" : "mt-3 font-semibold text-white"}>
         Paste Conversation
       </h3>
-      <p className="mt-2 text-sm text-slate-400">
+      <p className={isLight ? "mt-2 text-sm text-slate-600" : "mt-2 text-sm text-slate-400"}>
         Enter messages one per line.
       </p>
     </div>
@@ -1060,12 +1117,12 @@ if (elapsed < 2000) {
       ⟶
     </div>
 
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+    <div className={softCardClass}>
       <div className="text-4xl">🤖</div>
-      <h3 className="mt-3 font-semibold text-white">
+      <h3 className={isLight ? "mt-3 font-semibold text-slate-950" : "mt-3 font-semibold text-white"}>
         Run AI Analysis
       </h3>
-      <p className="mt-2 text-sm text-slate-400">
+      <p className={isLight ? "mt-2 text-sm text-slate-600" : "mt-2 text-sm text-slate-400"}>
         Detect manipulation patterns.
       </p>
     </div>
@@ -1073,12 +1130,12 @@ if (elapsed < 2000) {
       ⟶
     </div>
 
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+    <div className={softCardClass}>
       <div className="text-4xl">📊</div>
-      <h3 className="mt-3 font-semibold text-white">
+      <h3 className={isLight ? "mt-3 font-semibold text-slate-950" : "mt-3 font-semibold text-white"}>
         Review Results
       </h3>
-      <p className="mt-2 text-sm text-slate-400">
+      <p className={isLight ? "mt-2 text-sm text-slate-600" : "mt-2 text-sm text-slate-400"}>
         View risk score and insights.
       </p>
     </div>
@@ -1086,12 +1143,12 @@ if (elapsed < 2000) {
       ⟶
     </div>
 
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+    <div className={softCardClass}>
       <div className="text-4xl">📄</div>
-      <h3 className="mt-3 font-semibold text-white">
+      <h3 className={isLight ? "mt-3 font-semibold text-slate-950" : "mt-3 font-semibold text-white"}>
         Export Report
       </h3>
-      <p className="mt-2 text-sm text-slate-400">
+      <p className={isLight ? "mt-2 text-sm text-slate-600" : "mt-2 text-sm text-slate-400"}>
         Download a professional PDF.
       </p>
     </div>
@@ -1102,38 +1159,38 @@ if (elapsed < 2000) {
         )}
 
       </motion.div>
-    <footer className="relative z-20 mt-16 border-t border-white/10 py-14 text-center">
+    <footer className={footerClass}>
 
   <div className="mx-auto max-w-3xl">
 
-    <h2 className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-5xl font-bold text-transparent">
+    <h2 className={footerTitleClass}>
       Manipulens AI
     </h2>
 
-    <p className="mt-4 text-xl font-medium text-white">
+    <p className={footerLeadClass}>
       Turning Conversations Into Insights
     </p>
 
-    <p className="mt-3 text-slate-400">
+    <p className={footerBodyClass}>
       Detect manipulation patterns, uncover hidden intent, and gain a deeper
       understanding of digital conversations through AI-powered analysis.
     </p>
 
     <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
 
-      <span className="rounded-full border border-fuchsia-400/20 bg-fuchsia-500/10 px-4 py-2 text-sm text-fuchsia-200">
+      <span className={footerTagClass}>
         🟣 Gaslighting
       </span>
 
-      <span className="rounded-full border border-rose-400/20 bg-rose-500/10 px-4 py-2 text-sm text-rose-200">
+      <span className={isLight ? "rounded-full border border-rose-200 bg-rose-50 px-4 py-2 text-sm text-rose-700" : "rounded-full border border-rose-400/20 bg-rose-500/10 px-4 py-2 text-sm text-rose-200"}>
         🔴 Emotional Blackmail
       </span>
 
-      <span className="rounded-full border border-pink-400/20 bg-pink-500/10 px-4 py-2 text-sm text-pink-200">
+      <span className={isLight ? "rounded-full border border-pink-200 bg-pink-50 px-4 py-2 text-sm text-pink-700" : "rounded-full border border-pink-400/20 bg-pink-500/10 px-4 py-2 text-sm text-pink-200"}>
         🩷 Love Bombing
       </span>
 
-      <span className="rounded-full border border-amber-400/20 bg-amber-500/10 px-4 py-2 text-sm text-amber-200">
+      <span className={isLight ? "rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-sm text-amber-700" : "rounded-full border border-amber-400/20 bg-amber-500/10 px-4 py-2 text-sm text-amber-200"}>
         🟠 Guilt Tripping
       </span>
 
@@ -1141,11 +1198,11 @@ if (elapsed < 2000) {
 
     <div className="mt-10 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-    <p className="mt-6 text-sm tracking-widest text-slate-500 uppercase">
+    <p className={isLight ? "mt-6 text-sm tracking-widest text-slate-600 uppercase" : "mt-6 text-sm tracking-widest text-slate-500 uppercase"}>
       AI-Powered Conversation Intelligence
     </p>
 
-    <p className="mt-3 text-slate-500">
+    <p className={isLight ? "mt-3 text-slate-600" : "mt-3 text-slate-500"}>
       © 2026 Manipulens AI • All Rights Reserved
     </p>
 

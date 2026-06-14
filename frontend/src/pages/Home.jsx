@@ -64,7 +64,9 @@ const features = [
   }
 ]
 
-function NeonBackground() {
+function NeonBackground({ theme }) {
+  const isLight = theme === "light"
+
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="mesh-gradient absolute inset-0" />
@@ -153,8 +155,20 @@ function NeonBackground() {
         </g>
       </svg>
 
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.1),rgba(2,6,23,0.34)_30%,rgba(2,6,23,0.88))]" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:120px_120px] opacity-20" />
+      <div
+        className={
+          isLight
+            ? "absolute inset-0 bg-[linear-gradient(180deg,rgba(248,250,252,0.12),rgba(226,232,240,0.24)_30%,rgba(241,245,249,0.9))]"
+            : "absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.1),rgba(2,6,23,0.34)_30%,rgba(2,6,23,0.88))]"
+        }
+      />
+      <div
+        className={
+          isLight
+            ? "absolute inset-0 bg-[linear-gradient(90deg,rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(rgba(15,23,42,0.04)_1px,transparent_1px)] bg-[size:120px_120px] opacity-20"
+            : "absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:120px_120px] opacity-20"
+        }
+      />
 
       {starParticles.map((particle, index) => (
         <span
@@ -174,26 +188,89 @@ function NeonBackground() {
   )
 }
 
-function Home() {
+function Home({ theme, toggleTheme }) {
   const navigate = useNavigate()
+  const isLight = theme === "light"
+  const shellClass = isLight
+    ? "relative min-h-screen overflow-hidden bg-[#f8fafc] text-slate-900"
+    : "relative min-h-screen overflow-hidden bg-[#03050a] text-white"
+  const navClass = isLight
+    ? "relative z-20 mx-auto mt-5 flex w-[min(1120px,calc(100%-2rem))] items-center justify-between rounded-full border border-slate-200/80 bg-white/75 px-6 py-4 shadow-[0_20px_70px_rgba(15,23,42,0.12)] backdrop-blur-2xl transition duration-300 hover:border-slate-300 hover:bg-white/90"
+    : "relative z-20 mx-auto mt-5 flex w-[min(1120px,calc(100%-2rem))] items-center justify-between rounded-full border border-white/10 bg-white/[0.05] px-6 py-4 shadow-[0_20px_70px_rgba(0,0,0,0.38)] backdrop-blur-2xl transition duration-300 hover:border-white/20 hover:bg-white/[0.075]"
+  const navTitleClass = isLight
+    ? "text-lg font-semibold tracking-[0.18em] text-slate-950 sm:text-xl"
+    : "text-lg font-semibold tracking-[0.18em] text-white/95 sm:text-xl"
+  const themeButtonClass = isLight
+    ? "rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-semibold text-slate-800 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl transition duration-300 hover:border-slate-300 hover:bg-white"
+    : "rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-white/90 backdrop-blur-xl transition duration-300 hover:border-white/20 hover:bg-white/[0.08]"
+  const heroBadgeClass = isLight
+    ? "mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-700 shadow-[0_0_24px_rgba(34,211,238,0.08)] backdrop-blur-xl"
+    : "mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100 shadow-[0_0_24px_rgba(34,211,238,0.12)] backdrop-blur-xl"
+  const heroTitleClass = isLight
+    ? "max-w-6xl text-6xl font-semibold leading-[0.95] tracking-[-0.06em] text-slate-950 sm:text-7xl lg:text-[6.5rem]"
+    : "max-w-6xl text-6xl font-semibold leading-[0.95] tracking-[-0.06em] sm:text-7xl lg:text-[6.5rem]"
+  const heroSubtitleClass = isLight
+    ? "mt-8 max-w-3xl text-lg leading-8 text-slate-700 sm:text-xl"
+    : "mt-8 max-w-3xl text-lg leading-8 text-slate-300 sm:text-xl"
+  const learnMoreClass = isLight
+    ? "rounded-2xl border border-slate-200 bg-white/80 px-8 py-4 font-semibold text-slate-800 backdrop-blur-xl transition hover:border-slate-300 hover:bg-white"
+    : "rounded-2xl border border-white/10 bg-white/[0.03] px-8 py-4 font-semibold text-white/90 backdrop-blur-xl transition hover:border-white/20 hover:bg-white/[0.07]"
+  const sectionTitleClass = isLight
+    ? "mt-4 text-5xl font-bold text-slate-950"
+    : "mt-4 text-5xl font-bold text-white"
+  const sectionCopyClass = isLight
+    ? "mx-auto mt-6 max-w-3xl text-lg text-slate-600"
+    : "mx-auto mt-6 max-w-3xl text-lg text-slate-400"
+  const glassCardClass = isLight
+    ? "rounded-[2rem] border border-slate-200/80 bg-white/75 p-10 backdrop-blur-2xl shadow-[0_24px_80px_rgba(15,23,42,0.08)]"
+    : "rounded-[2rem] border border-white/10 bg-white/[0.04] p-10 backdrop-blur-2xl"
+  const glassCardCenteredClass = isLight
+    ? "rounded-[2rem] border border-slate-200/80 bg-white/75 p-12 text-center backdrop-blur-2xl shadow-[0_24px_80px_rgba(15,23,42,0.08)]"
+    : "rounded-[2rem] border border-white/10 bg-white/[0.04] p-12 text-center backdrop-blur-2xl"
+  const featureCardClass = isLight
+    ? "group rounded-3xl border border-slate-200/80 bg-white/75 p-6 backdrop-blur-2xl transition hover:border-cyan-300/40 hover:bg-white/90 shadow-[0_20px_60px_rgba(15,23,42,0.06)]"
+    : "group rounded-3xl border border-white/10 bg-white/[0.045] p-6 backdrop-blur-2xl transition hover:border-cyan-300/25 hover:bg-white/[0.065]"
+  const featureIconClass = isLight
+    ? "mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white/85 text-cyan-700 shadow-[0_0_24px_rgba(34,211,238,0.12)] transition group-hover:border-cyan-300/30 group-hover:shadow-[0_0_32px_rgba(168,85,247,0.16)]"
+    : "mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-cyan-100 shadow-[0_0_24px_rgba(34,211,238,0.14)] transition group-hover:border-cyan-300/30 group-hover:shadow-[0_0_32px_rgba(168,85,247,0.2)]"
+  const featureTitleClass = isLight
+    ? "text-xl font-semibold tracking-tight text-slate-950"
+    : "text-xl font-semibold tracking-tight text-white"
+  const featureCopyClass = isLight
+    ? "mt-3 text-sm leading-7 text-slate-600"
+    : "mt-3 text-sm leading-7 text-slate-400"
+  const footerClass = isLight
+    ? "relative z-10 border-t border-slate-200/80 py-8 text-center"
+    : "relative z-10 border-t border-white/10 py-8 text-center"
+  const footerCopyClass = isLight ? "text-sm text-slate-500" : "text-sm text-slate-500"
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#03050a] text-white">
-      <NeonBackground />
+    <div className={shellClass}>
+      <NeonBackground theme={theme} />
 
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(168,85,247,0.14),transparent_24%),radial-gradient(circle_at_15%_70%,rgba(34,211,238,0.08),transparent_20%),radial-gradient(circle_at_85%_75%,rgba(236,72,153,0.08),transparent_20%)]" />
 
-      <nav className="relative z-20 mx-auto mt-5 flex w-[min(1120px,calc(100%-2rem))] items-center justify-between rounded-full border border-white/10 bg-white/[0.05] px-6 py-4 shadow-[0_20px_70px_rgba(0,0,0,0.38)] backdrop-blur-2xl transition duration-300 hover:border-white/20 hover:bg-white/[0.075]">
-        <h1 className="text-lg font-semibold tracking-[0.18em] text-white/95 sm:text-xl">
+      <nav className={navClass}>
+        <h1 className={navTitleClass}>
           Manipulens AI
         </h1>
 
-        <button
-          onClick={() => navigate("/analyze")}
-          className="rounded-full border border-cyan-400/20 bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_24px_rgba(168,85,247,0.35),0_0_42px_rgba(34,211,238,0.2)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(168,85,247,0.48),0_0_52px_rgba(34,211,238,0.3)]"
-        >
-          Analyze Chat
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            className={themeButtonClass}
+            aria-pressed={isLight}
+          >
+            {isLight ? "☀ Dark Mode" : "☾ Light Mode"}
+          </button>
+
+          <button
+            onClick={() => navigate("/analyze")}
+            className="rounded-full border border-cyan-400/20 bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_24px_rgba(168,85,247,0.35),0_0_42px_rgba(34,211,238,0.2)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(168,85,247,0.48),0_0_52px_rgba(34,211,238,0.3)]"
+          >
+            Analyze Chat
+          </button>
+        </div>
       </nav>
 
       <motion.section
@@ -203,7 +280,7 @@ function Home() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         <motion.div
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100 shadow-[0_0_24px_rgba(34,211,238,0.12)] backdrop-blur-xl"
+          className={heroBadgeClass}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
@@ -213,7 +290,7 @@ function Home() {
         </motion.div>
 
         <motion.h1
-          className="max-w-6xl text-6xl font-semibold leading-[0.95] tracking-[-0.06em] sm:text-7xl lg:text-[6.5rem]"
+          className={heroTitleClass}
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
@@ -227,7 +304,7 @@ function Home() {
         </motion.h1>
 
         <motion.p
-          className="mt-8 max-w-3xl text-lg leading-8 text-slate-300 sm:text-xl"
+          className={heroSubtitleClass}
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.28 }}
@@ -258,7 +335,7 @@ function Home() {
               .getElementById("features-section")
               ?.scrollIntoView({ behavior: "smooth" })
           }
-          className="rounded-2xl border border-white/10 bg-white/[0.03] px-8 py-4 font-semibold text-white/90 backdrop-blur-xl transition hover:border-white/20 hover:bg-white/[0.07]"
+          className={learnMoreClass}
           whileHover={{ y: -3, scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
           >
@@ -274,10 +351,10 @@ function Home() {
           <p className="text-purple-400 font-semibold uppercase tracking-[0.3em]">
             Features
           </p>
-          <h2 className="mt-4 text-5xl font-bold text-white">
+          <h2 className={sectionTitleClass}>
             AI-powered Conversation Intelligence
           </h2>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-400">
+          <p className={sectionCopyClass}>
             Understand conversations through manipulation detection,
             risk scoring, visual analytics and AI recommendations.
           </p>
@@ -285,7 +362,7 @@ function Home() {
       </section>
       <section className="relative z-10 mx-auto max-w-6xl px-8 py-24">
         <motion.div
-          className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-10 backdrop-blur-2xl"
+          className={glassCardClass}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -293,20 +370,20 @@ function Home() {
           <p className="text-purple-400 font-semibold uppercase tracking-[0.3em]">
             Why We Built Manipulens AI ? 
           </p>
-          <h2 className="mt-4 text-5xl font-bold text-white">
+          <h2 className={sectionTitleClass}>
             Understanding conversations shouldn't require guessing.
           </h2>
-          <p className="mt-8 text-lg leading-9 text-slate-300">
+          <p className={isLight ? "mt-8 text-lg leading-9 text-slate-700" : "mt-8 text-lg leading-9 text-slate-300"}>
             Manipulation often hides behind everyday language.
             Gaslighting, emotional pressure, guilt-based persuasion,
             and excessive idealization can be difficult to recognize
             in real time.
           </p>
-          <p className="mt-6 text-lg leading-9 text-slate-300">
+          <p className={isLight ? "mt-6 text-lg leading-9 text-slate-700" : "mt-6 text-lg leading-9 text-slate-300"}>
             Manipulens AI helps people identify these signals using
             machine learning, visual analytics and actionable insights.
           </p>
-          <p className="mt-6 text-lg leading-9 text-slate-300">
+          <p className={isLight ? "mt-6 text-lg leading-9 text-slate-700" : "mt-6 text-lg leading-9 text-slate-300"}>
             Our mission is to make conversations more transparent,
             understandable and healthier for everyone.
           </p>
@@ -316,7 +393,7 @@ function Home() {
       <section className="relative z-10 mx-auto max-w-6xl px-8 py-24">
 
   <motion.div
-    className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-12 text-center backdrop-blur-2xl"
+    className={glassCardCenteredClass}
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -326,11 +403,11 @@ function Home() {
       Ready To Start?
     </p>
 
-    <h2 className="mt-4 text-5xl font-bold text-white">
+    <h2 className={sectionTitleClass}>
       Analyze Conversations With AI
     </h2>
 
-    <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300">
+    <p className={isLight ? "mx-auto mt-6 max-w-2xl text-lg text-slate-700" : "mx-auto mt-6 max-w-2xl text-lg text-slate-300"}>
       Detect manipulation patterns, understand conversational
       risks and receive AI-powered recommendations instantly.
     </p>
@@ -353,22 +430,22 @@ function Home() {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="group rounded-3xl border border-white/10 bg-white/[0.045] p-6 backdrop-blur-2xl transition hover:border-cyan-300/25 hover:bg-white/[0.065]"
+              className={featureCardClass}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -6, scale: 1.015 }}
             >
-              <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-cyan-100 shadow-[0_0_24px_rgba(34,211,238,0.14)] transition group-hover:border-cyan-300/30 group-hover:shadow-[0_0_32px_rgba(168,85,247,0.2)]">
+              <div className={featureIconClass}>
                 {feature.icon}
               </div>
 
-              <h3 className="text-xl font-semibold tracking-tight text-white">
+              <h3 className={featureTitleClass}>
                 {feature.title}
               </h3>
 
-              <p className="mt-3 text-sm leading-7 text-slate-400">
+              <p className={featureCopyClass}>
                 {feature.copy}
               </p>
             </motion.div>
@@ -376,8 +453,8 @@ function Home() {
         </div>
       </section>
 
-       <footer className="relative z-10 border-t border-white/10 py-8 text-center">
-        <p className="text-sm text-slate-500">
+       <footer className={footerClass}>
+        <p className={footerCopyClass}>
           © 2026 Manipulens AI • AI-powered conversation intelligence.
         </p>
       </footer>
