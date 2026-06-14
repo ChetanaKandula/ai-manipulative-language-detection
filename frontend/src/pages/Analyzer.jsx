@@ -490,6 +490,17 @@ for (let i = 1; i <= pageCount; i++) {
               className="mt-6 h-72 w-full rounded-[1.75rem] border border-white/10 bg-white/5 p-5 text-[15px] leading-7 text-white outline-none transition placeholder:text-slate-500 focus:border-purple-400/50 focus:bg-white/[0.07]"
               placeholder={`Example:\nI'm worried you misunderstood me.\nYou always do this to me.\nI just care about you so much.`}
             />
+            <div className="mt-3 flex justify-between text-sm text-slate-400">
+              <span>{chat.length} characters</span>
+              
+              <span>
+                {
+                chat
+                .split("\n")
+                .filter(msg => msg.trim()).length
+                } messages
+              </span>
+            </div>
             <div className="mt-4 flex gap-3">
               <button
                 onClick={loadDemoConversation}
