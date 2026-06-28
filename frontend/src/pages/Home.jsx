@@ -263,6 +263,18 @@ function Home({ theme, toggleTheme }) {
           >
             {isLight ? "☀ Dark Mode" : "☾ Light Mode"}
           </button>
+          <motion.button
+  onClick={() => navigate("/login")}
+  className={
+    isLight
+      ? "rounded-full border border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-cyan-300 hover:bg-white"
+      : "rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-sm font-semibold text-white transition hover:border-cyan-400/40 hover:bg-white/[0.08]"
+  }
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.98 }}
+>
+  🔐 Login
+</motion.button>
 
           <button
             onClick={() => navigate("/analyze")}
