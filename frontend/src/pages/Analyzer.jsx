@@ -477,6 +477,22 @@ for (let i = 1; i <= pageCount; i++) {
       glow: "rgba(251, 191, 36, 0.26)"
     }
   }
+  const predictionReasons = {
+  "Gaslighting":
+    "This message attempts to make the recipient question their memory, perception, or understanding of events.",
+
+  "Emotional Blackmail":
+    "This message uses guilt, fear, or obligation to influence another person's decisions.",
+
+  "Love Bombing":
+    "This message contains excessive affection or praise that may be used to influence emotions or build dependency.",
+
+  "Guilt Tripping":
+    "This message attempts to make the recipient feel responsible for another person's emotions or actions.",
+
+  "Normal":
+    "No significant indicators of manipulative language were detected in this message."
+}
 
   const pageVariants = {
     hidden: { opacity: 0 },
@@ -1243,6 +1259,18 @@ localStorage.setItem(
                           <p className={isLight ? "mt-4 text-lg leading-8 text-slate-800" : "mt-4 text-lg leading-8 text-white/90"}>
                             {item.message}
                           </p>
+
+                          <div className="mt-5 rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-4">
+
+  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
+    🧠 AI Explanation
+  </p>
+
+  <p className="mt-2 text-sm leading-7 text-slate-300">
+    {predictionReasons[item.prediction]}
+  </p>
+
+</div>
                         </div>
 
                         <div className={`min-w-[12rem] rounded-[1.5rem] border p-4 ${theme.confidenceWrap}`}>
