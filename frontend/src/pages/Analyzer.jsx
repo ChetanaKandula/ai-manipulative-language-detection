@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, animate } from "framer-motion"
 import {
   Cell,
@@ -136,6 +136,8 @@ function Analyzer({ theme }) {
   const [chat, setChat] = useState("")
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
+  const fileInputRef = useRef(null)
+  const [errorMessage, setErrorMessage] = useState("")
   const [loadingMessage, setLoadingMessage] = useState("")
   const loadDemoConversation = () => {
   setChat(`How was your day
@@ -144,6 +146,23 @@ Nobody else thinks that happened.
 If you loved me, you'd support me.
 You're the most amazing person I've ever met.
 Let's go out tomorrow.`)
+}
+const handleFileUpload = (event) => {
+
+  const file = event.target.files[0]
+
+  if (!file) return
+
+  const reader = new FileReader()
+
+  reader.onload = (e) => {
+
+    setChat(e.target.result)
+
+  }
+
+  reader.readAsText(file)
+
 }
   const copyResults = () => {
     if (!result) return
@@ -456,9 +475,12 @@ for (let i = 1; i <= pageCount; i++) {
 
   const analyzeChat = async () => {
 
-    if (!chat.trim()) return
-
-    setLoading(true)
+  if (!chat.trim()) {
+  setErrorMessage("Please enter at least one message to analyze.")
+  return
+}
+  setErrorMessage("")
+  setLoading(true)
     setLoadingMessage("🧠 Detecting manipulation patterns...")
     const stage1 = setTimeout(() =>{
       setLoadingMessage("📊 Calculating risk score...")
@@ -495,9 +517,10 @@ if (elapsed < 2000) {
       setResult(response.data)
 
     } catch (error) {
-
       console.error(error)
-
+      setErrorMessage(
+        "Connection lost. Please ensure the AI backend is running."
+      )
     } finally {
       clearTimeout(stage1)
       clearTimeout(stage2)
@@ -646,6 +669,20 @@ if (elapsed < 2000) {
               >
                 🧹Clear
               </button>
+              <button
+  onClick={() => fileInputRef.current.click()}
+  className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm hover:bg-white/10 transition"
+>
+  📄 Upload TXT
+</button>
+
+<input
+  type="file"
+  accept=".txt"
+  ref={fileInputRef}
+  onChange={handleFileUpload}
+  className="hidden"
+/>
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
               {Object.entries(quickPrompts).map(([label, text]) => (
@@ -675,6 +712,11 @@ if (elapsed < 2000) {
                 <span className={isLight ? "font-medium text-purple-700" : "font-medium text-purple-100"}>One message per line</span>
               </div>
             </div>
+            {errorMessage && (
+  <div className="mt-4 rounded-xl border border-red-500/20 bg-red-500/10 p-4 text-red-200">
+    ⚠️ {errorMessage}
+  </div>
+)}
             <div className={isLight ? "mt-6 rounded-[1.5rem] border border-slate-200/80 bg-white/80 p-5 shadow-[0_14px_40px_rgba(15,23,42,0.06)]" : "mt-6 rounded-[1.5rem] border border-white/10 bg-white/5 p-5"}>
             <h3 className={isLight ? "text-sm font-semibold uppercase tracking-[0.2em] text-purple-700" : "text-sm font-semibold uppercase tracking-[0.2em] text-purple-200"}>
               Supported Detection Types
