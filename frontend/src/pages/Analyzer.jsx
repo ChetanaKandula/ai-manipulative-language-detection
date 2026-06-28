@@ -135,10 +135,22 @@ function Analyzer({ theme }) {
 
   const [chat, setChat] = useState("")
   const [result, setResult] = useState(null)
+  const [history, setHistory] = useState([])
   const [loading, setLoading] = useState(false)
   const fileInputRef = useRef(null)
   const [errorMessage, setErrorMessage] = useState("")
   const [loadingMessage, setLoadingMessage] = useState("")
+  useEffect(() => {
+
+  const savedHistory = localStorage.getItem("analysisHistory")
+
+  if (savedHistory) {
+
+    setHistory(JSON.parse(savedHistory))
+
+  }
+
+}, [])
   const loadDemoConversation = () => {
   setChat(`How was your day
 You're imagining things again.
@@ -162,6 +174,20 @@ const handleFileUpload = (event) => {
   }
 
   reader.readAsText(file)
+
+}
+const deleteHistoryItem = (id) => {
+
+  const updatedHistory = history.filter(
+    (item) => item.id !== id
+  )
+
+  setHistory(updatedHistory)
+
+  localStorage.setItem(
+    "analysisHistory",
+    JSON.stringify(updatedHistory)
+  )
 
 }
   const copyResults = () => {
@@ -514,8 +540,52 @@ if (elapsed < 2000) {
   )
 }
 
-      setResult(response.data)
+      const analysisResult = response.data
 
+setResult(analysisResult)
+
+const totalMessages = analysisResult.results.length
+
+const normalCount =
+  analysisResult.summary.Normal || 0
+
+const manipulativeCount =
+  totalMessages - normalCount
+
+const averageConfidence = Math.round(
+  analysisResult.results.reduce(
+    (sum, item) => sum + item.confidence,
+    0
+  ) / totalMessages
+)
+
+const calculatedRiskScore = Math.min(
+  100,
+  Math.round(
+    (manipulativeCount / totalMessages) * 70 +
+    averageConfidence * 0.3
+  )
+)
+
+const newAnalysis = {
+  id: Date.now(),
+  date: new Date().toLocaleString(),
+  chat,
+  result: analysisResult,
+  riskScore: calculatedRiskScore
+}
+
+const updatedHistory = [
+  newAnalysis,
+  ...history
+].slice(0, 5)
+
+setHistory(updatedHistory)
+
+localStorage.setItem(
+  "analysisHistory",
+  JSON.stringify(updatedHistory)
+)
     } catch (error) {
       console.error(error)
       setErrorMessage(
@@ -899,7 +969,80 @@ if (elapsed < 2000) {
             </motion.div>
           </div>
         </section>
+        {/* Recent Analyses */}
 
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl"
+>
+  <h2 className="text-2xl font-bold text-white">
+    🕒 Recent Analyses
+  </h2>
+
+  <p className="mt-2 text-slate-400">
+    Click any previous analysis to reopen it.
+  </p>
+
+  <div className="mt-6 space-y-4">
+
+    {history.length === 0 ? (
+
+      <p className="text-slate-500">
+        No previous analyses yet.
+      </p>
+
+    ) : (
+
+      history.map((item) => (
+
+        <div
+          key={item.id}
+          onClick={() => {
+            setChat(item.chat)
+            setResult(item.result)
+          }}
+          className="cursor-pointer rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:border-cyan-400 hover:bg-white/10"
+        >
+          <div className="flex items-center justify-between">
+
+            <div>
+              <p className="font-semibold text-white">
+                Risk Score: {item.riskScore}%
+              </p>
+
+              <p className="text-sm text-slate-400">
+                {item.date}
+              </p>
+            </div>
+
+            <p className="text-cyan-300 text-sm">
+              {item.result.results.length} messages
+            </p>
+
+            <button
+  onClick={(e) => {
+  e.stopPropagation()
+
+  if (window.confirm("Delete this analysis?")) {
+    deleteHistoryItem(item.id)
+  }
+}}
+  className="rounded-lg px-3 py-1 text-sm text-red-400 transition hover:bg-red-500/10 hover:text-red-300"
+>
+  🗑 Delete
+</button>
+
+          </div>
+        </div>
+
+      ))
+
+    )}
+
+  </div>
+</motion.div>
         {result ? (
           <motion.section className={panelClass} variants={fadeUp}>
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
