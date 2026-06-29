@@ -9,6 +9,8 @@ import {
 } from "recharts"
 import API from "../services/api"
 import { jsPDF } from "jspdf"
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const particleField = [
   { top: "8%", left: "12%", size: 14, dx: "22px", dy: "-18px", duration: "14s", delay: "-2s", opacity: 0.42, glow: "rgba(168, 85, 247, 0.95)" },
@@ -140,6 +142,12 @@ function Analyzer({ theme }) {
   const fileInputRef = useRef(null)
   const [errorMessage, setErrorMessage] = useState("")
   const [loadingMessage, setLoadingMessage] = useState("")
+  const { logout, user } = useAuth();
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+  await logout();
+  navigate("/");
+};
   useEffect(() => {
 
   const savedHistory = localStorage.getItem("analysisHistory")
@@ -689,7 +697,20 @@ localStorage.setItem(
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:min-w-[34rem]">
+          <div className="flex flex-col items-end gap-4">
+            <div className="flex items-center gap-3">
+              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm">
+              👤 {user?.email}
+              </div>
+            <button
+            onClick={handleLogout}
+            className="rounded-xl bg-red-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-600"
+            >
+              Logout
+            </button>
+          </div>
+
+  <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:min-w-[34rem]">
             <div className="metric-card">
               <span>Messages</span>
               <strong><AnimatedNumber value={totalMessages} /></strong>
@@ -705,6 +726,7 @@ localStorage.setItem(
             <div className="metric-card">
               <span>Normal</span>
               <strong><AnimatedNumber value={normalCount} /></strong>
+              </div>
             </div>
           </div>
         </motion.header>

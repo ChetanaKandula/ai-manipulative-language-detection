@@ -5,6 +5,7 @@ import Analyzer from "./pages/Analyzer"
 import Login from "./pages/Login";
 import ScrollToTop from "./components/ScrollToTop"
 import Register from "./pages/Register";
+import ProtectedRoute from "./components/ProtectedRoutes";
 
 function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem("theme") ?? "dark")
@@ -30,9 +31,13 @@ function App() {
         />
 
         <Route
-          path="/analyze"
-          element={<Analyzer theme={theme} toggleTheme={toggleTheme} />}
-        />
+  path="/analyze"
+  element={
+    <ProtectedRoute>
+      <Analyzer theme={theme} toggleTheme={toggleTheme} />
+    </ProtectedRoute>
+  }
+/>
 
         <Route
           path="/login"

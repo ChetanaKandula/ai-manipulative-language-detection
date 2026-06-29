@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
+import { useAuth } from "../context/AuthContext";
 
 const starParticles = [
   { top: "12%", left: "8%", size: 3, opacity: 0.55, delay: 0 },
@@ -190,6 +191,7 @@ function NeonBackground({ theme }) {
 
 function Home({ theme, toggleTheme }) {
   const navigate = useNavigate()
+  const { user, logout } = useAuth();
   const isLight = theme === "light"
   const shellClass = isLight
     ? "relative min-h-screen overflow-hidden bg-[#f8fafc] text-slate-900"
@@ -243,7 +245,10 @@ function Home({ theme, toggleTheme }) {
     ? "relative z-10 border-t border-slate-200/80 py-8 text-center"
     : "relative z-10 border-t border-white/10 py-8 text-center"
   const footerCopyClass = isLight ? "text-sm text-slate-500" : "text-sm text-slate-500"
-
+  const handleLogout = async () => {
+  await logout();
+  navigate("/");
+};
   return (
     <div className={shellClass}>
       <NeonBackground theme={theme} />
@@ -263,18 +268,41 @@ function Home({ theme, toggleTheme }) {
           >
             {isLight ? "☀ Dark Mode" : "☾ Light Mode"}
           </button>
-          <motion.button
-  onClick={() => navigate("/login")}
-  className={
-    isLight
-      ? "rounded-full border border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-cyan-300 hover:bg-white"
-      : "rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-sm font-semibold text-white transition hover:border-cyan-400/40 hover:bg-white/[0.08]"
-  }
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 0.98 }}
->
-  🔐 Login
-</motion.button>
+          {user ? (
+  <>
+    <div
+      className={
+        isLight
+          ? "rounded-full border border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-800"
+          : "rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-sm font-semibold text-white"
+      }
+    >
+      👤 {user.email}
+    </div>
+
+    <motion.button
+      onClick={handleLogout}
+      className="rounded-full bg-red-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-600"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.97 }}
+    >
+      Logout
+    </motion.button>
+  </>
+) : (
+  <motion.button
+    onClick={() => navigate("/login")}
+    className={
+      isLight
+        ? "rounded-full border border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-cyan-300 hover:bg-white"
+        : "rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-sm font-semibold text-white transition hover:border-cyan-400/40 hover:bg-white/[0.08]"
+    }
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.98 }}
+  >
+    🔐 Login
+  </motion.button>
+)}
 
           <button
             onClick={() => navigate("/analyze")}
