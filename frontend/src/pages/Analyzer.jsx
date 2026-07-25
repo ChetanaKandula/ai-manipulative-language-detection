@@ -11,7 +11,11 @@ import API from "../services/api"
 import { jsPDF } from "jspdf"
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-
+import {
+  getHistory,
+  saveAnalysis,
+  deleteHistory
+} from "../services/firestore";
 const particleField = [
   { top: "8%", left: "12%", size: 14, dx: "22px", dy: "-18px", duration: "14s", delay: "-2s", opacity: 0.42, glow: "rgba(168, 85, 247, 0.95)" },
   { top: "14%", left: "74%", size: 10, dx: "-26px", dy: "18px", duration: "16s", delay: "-6s", opacity: 0.34, glow: "rgba(59, 130, 246, 0.95)" },
@@ -149,16 +153,15 @@ function Analyzer({ theme }) {
   navigate("/");
 };
   useEffect(() => {
+  async function loadHistory() {
+    if (!user) return;
 
-  const savedHistory = localStorage.getItem("analysisHistory")
-
-  if (savedHistory) {
-
-    setHistory(JSON.parse(savedHistory))
-
+    const historyData = await getHistory(user.uid);
+    setHistory(historyData);
   }
 
-}, [])
+  loadHistory();
+}, [user]);
   const loadDemoConversation = () => {
   setChat(`How was your day
 You're imagining things again.
@@ -184,20 +187,15 @@ const handleFileUpload = (event) => {
   reader.readAsText(file)
 
 }
-const deleteHistoryItem = (id) => {
+const deleteHistoryItem = async (historyId) => {
+  if (!user) return;
 
-  const updatedHistory = history.filter(
-    (item) => item.id !== id
-  )
+  await deleteHistory(user.uid, historyId);
 
-  setHistory(updatedHistory)
-
-  localStorage.setItem(
-    "analysisHistory",
-    JSON.stringify(updatedHistory)
-  )
-
-}
+  const historyData = await getHistory(user.uid);
+  setHistory(historyData);
+};
+  
   const copyResults = () => {
     if (!result) return
     const text = result.results
@@ -598,18 +596,15 @@ const newAnalysis = {
   result: analysisResult,
   riskScore: calculatedRiskScore
 }
+if (user) {
+  await saveAnalysis(user.uid, {
+    ...newAnalysis,
+    createdAt: new Date(),
+  });
+}
 
-const updatedHistory = [
-  newAnalysis,
-  ...history
-].slice(0, 5)
-
-setHistory(updatedHistory)
-
-localStorage.setItem(
-  "analysisHistory",
-  JSON.stringify(updatedHistory)
-)
+const historyData = await getHistory(user.uid);
+setHistory(historyData);
     } catch (error) {
       console.error(error)
       setErrorMessage(
@@ -1447,5 +1442,4 @@ localStorage.setItem(
     </motion.div>
   )
 }
-
 export default Analyzer

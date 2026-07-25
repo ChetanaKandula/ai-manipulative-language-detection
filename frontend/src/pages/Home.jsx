@@ -342,6 +342,14 @@ function Home({ theme, toggleTheme }) {
           <br />
           Before It Hurts
         </motion.h1>
+<motion.p
+  className="mt-6 text-xl font-semibold tracking-wide text-purple-300"
+  initial={{ opacity: 0, y: 18 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.75, delay: 0.22 }}
+>
+  <b><i>Small Wins. Big Results.</i></b>
+</motion.p>
 
         <motion.p
           className={heroSubtitleClass}
