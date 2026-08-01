@@ -6,6 +6,9 @@ import Login from "./pages/Login";
 import ScrollToTop from "./components/ScrollToTop"
 import Register from "./pages/Register";
 import ProtectedRoute from "./components/ProtectedRoutes";
+import Profile from "./pages/Profile";
+import History from "./pages/History";
+import SettingsPage from "./pages/Settings";
 
 function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem("theme") ?? "dark")
@@ -47,6 +50,32 @@ function App() {
         <Route
   path="/register"
   element={<Register theme={theme} toggleTheme={toggleTheme} />}
+/>
+<Route
+  path="/profile"
+  element={
+    <ProtectedRoute>
+      <Profile theme={theme} />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/history"
+  element={
+    <ProtectedRoute>
+      <History theme={theme} />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/settings"
+  element={
+    <ProtectedRoute>
+      <SettingsPage theme={theme} />
+    </ProtectedRoute>
+  }
 />
 
       </Routes>

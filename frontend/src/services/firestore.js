@@ -26,9 +26,9 @@ export async function getHistory(userId) {
   const snapshot = await getDocs(q);
 
   return snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
+  ...doc.data(),
+  id: doc.id,
+}));
 }
 
 export async function deleteHistory(userId, historyId) {

@@ -188,12 +188,27 @@ const handleFileUpload = (event) => {
 
 }
 const deleteHistoryItem = async (historyId) => {
-  if (!user) return;
+  if (!user) {
+    console.log("No user found");
+    return;
+  }
 
-  await deleteHistory(user.uid, historyId);
+  try {
+    console.log("Deleting history ID:", historyId);
+    console.log("User ID:", user.uid);
 
-  const historyData = await getHistory(user.uid);
-  setHistory(historyData);
+    await deleteHistory(user.uid, historyId);
+
+    console.log("Firestore delete successful");
+
+    setHistory((prevHistory) =>
+      prevHistory.filter((item) => item.id !== historyId)
+    );
+
+  } catch (error) {
+    console.error("DELETE FAILED:", error);
+    alert("Failed to delete analysis. Check console.");
+  }
 };
   
   const copyResults = () => {
@@ -588,9 +603,8 @@ const calculatedRiskScore = Math.min(
     averageConfidence * 0.3
   )
 )
-
+console.log("analysisResult:", analysisResult);
 const newAnalysis = {
-  id: Date.now(),
   date: new Date().toLocaleString(),
   chat,
   result: analysisResult,
@@ -674,9 +688,25 @@ setHistory(historyData);
 
       <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:72px_72px]" />
 
-      <motion.div className="relative mx-auto flex min-h-screen max-w-7xl flex-col gap-8 px-4 py-6 sm:px-6 lg:px-8 lg:py-8" variants={pageVariants}>
+      <motion.div
+  className="relative mx-auto flex min-h-screen max-w-7xl flex-col gap-8 px-4 py-6 sm:px-6 lg:px-8 lg:py-8"
+  variants={pageVariants}
+>
 
-        <motion.header className={headerClass} variants={fadeUp}>
+  {/* Back Button */}
+  <motion.button
+    variants={fadeUp}
+    onClick={() => navigate(-1)}
+    className={`w-fit rounded-xl border px-5 py-2 transition ${
+      isLight
+        ? "border-slate-300 bg-white/70 text-slate-800 hover:bg-white"
+        : "border-white/10 bg-white/5 text-white hover:bg-white/10"
+    }`}
+  >
+    ← Back
+  </motion.button>
+
+  <motion.header className={headerClass} variants={fadeUp}>
 
           <div className="max-w-3xl">
             <div className={pillClass}>
